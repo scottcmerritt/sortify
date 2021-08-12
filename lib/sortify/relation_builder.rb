@@ -27,9 +27,9 @@ module Sortify
 
         case query_name
         when "nojoin"
-            @relation.select(net_score_col).select(time_decay_col).where(*where_clause).order(order_clause)
+            @relation.select(net_score_col).select(time_decay_col).where(*where_clause).order(Arel.sql(order_clause))
         else
-            @relation.select(net_score_col).select(time_decay_col).joins(join_clause).where(*where_clause).order(order_clause)
+            @relation.select(net_score_col).select(time_decay_col).joins(join_clause).where(*where_clause).order(Arel.sql(order_clause))
         end
       end
   
