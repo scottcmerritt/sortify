@@ -37,7 +37,7 @@ module Sortify
     def self.time_decay_adjusted table_name, lambda_key
       lambda_val = Sortify::LAMBDA_VALUES[lambda_key]
       time_decay_query = Sortify::SortFields.time_decay(table_name)
-      lambda_val.nil? ? "1" : "exp(#{time_decay_query}*#{lambda_val})"
+      lambda_val.nil? ? "1" : Arel.sql("exp(#{time_decay_query}*#{lambda_val})")
     end
   end
 
